@@ -1,7 +1,6 @@
 library(imager)
 setwd("E:/School stuffs/¦Û¶Ç¼i¾ú/MSRCR")
-im <- load.image("W_1.JPG")
-im<-as.cimg(im)
+im<-as.cimg(load.image("W_1.JPG"))
 im_Gaussian1 <- as.cimg(load.image("4out_put.png"))
 im_Gaussian2 <- as.cimg(load.image("10out_put.png"))
 im_Gaussian3 <- as.cimg(load.image("70out_put.png"))
