@@ -1,6 +1,6 @@
 library(imager)
 setwd("E:/School stuffs/¦Û¶Ç¼i¾ú/MSRCR")
-im <- load.image("WIN_1.JPG")
+im <- load.image("W_1.JPG")
 im<-as.cimg(im)
 im_Gaussian1 <- as.cimg(load.image("4out_put.png"))
 im_Gaussian2 <- as.cimg(load.image("10out_put.png"))
@@ -8,64 +8,42 @@ im_Gaussian3 <- as.cimg(load.image("70out_put.png"))
 im_Gaussian4 <- as.cimg(load.image("100out_put.png"))
 im_Gaussian5 <- as.cimg(load.image("130out_put.png"))
 im_Gaussian6 <- as.cimg(load.image("160out_put.png"))
-# im_Gaussian7 <- as.cimg(load.image("220out_put.png"))
 
-# im_Gaussian<-as.cimg(im_Gaussian)
-
-# plot(im_Gaussian3)  
-# plot(im)
-# plot(im_Gaussian)
-# 
-# im[,,,1]<-1
+modify_value<-0.0000000001
 {
   {
-    im_Gaussian1[which(im_Gaussian1==0)]<-0.0000000001
+    im_Gaussian1[which(im_Gaussian1==0)]<-modify_value
     log_im<-log10(im+0.01)
     log_im_Gaussian1<-log10(im_Gaussian1)
     SSR1<-log_im -log_im_Gaussian1
-    # rm(im_Gaussian1)
   }  
   {
-    im_Gaussian2[which(im_Gaussian2==0)]<-0.0000000001
+    im_Gaussian2[which(im_Gaussian2==0)]<-modify_value
     log_im_Gaussian2<-log10(im_Gaussian2)
     SSR2<-log_im -log_im_Gaussian2
-    # rm(im_Gaussian2)
   }  
   {
-    im_Gaussian3[which(im_Gaussian3==0)]<-0.0000000001
+    im_Gaussian3[which(im_Gaussian3==0)]<-modify_value
     log_im_Gaussian3<-log10(im_Gaussian3)
     SSR3<-log_im -log_im_Gaussian3
-    # rm(im_Gaussian3)
   }  
   {
-    im_Gaussian4[which(im_Gaussian4==0)]<-0.0000000001
+    im_Gaussian4[which(im_Gaussian4==0)]<-modify_value
     log_im_Gaussian4<-log10(im_Gaussian4)
     SSR4<-log_im -log_im_Gaussian4
-    # rm(im_Gaussian4)
   }  
   {
-    im_Gaussian5[which(im_Gaussian5==0)]<-0.0000000001
+    im_Gaussian5[which(im_Gaussian5==0)]<-modify_value
     log_im_Gaussian5<-log10(im_Gaussian5)
     SSR5<-log_im -log_im_Gaussian5
-    # rm(log_im_Gaussian6)
   }  
   {
-    im_Gaussian6[which(im_Gaussian6==0)]<-0.0000000001
+    im_Gaussian6[which(im_Gaussian6==0)]<-modify_value
     log_im_Gaussian6<-log10(im_Gaussian6)
     SSR6<-log_im -log_im_Gaussian6
-    # rm(im_Gaussian6)
   }  
-  # {
-  #   im_Gaussian7[which(im_Gaussian7==0)]<-0.000000000000000001
-  #   log_im_Gaussian7<-log10(im_Gaussian7)
-  #   SSR7<-log_im -log_im_Gaussian7
-  #   # rm(im_Gaussian6)
-  # }  
 }
-retinex<-(SSR1+SSR2)/2
-retinex<-(SSR5+SSR4  )*.5
 retinex<-(SSR1+SSR2+SSR3+SSR4+SSR5+SSR6)/6
-retinex<-SSR1
 {
     temp<-retinex
     temp[,,,1]<-(retinex[,,,1]-min(retinex[,,,1])) / (max(retinex[,,,1])-min(retinex[,,,1]))
@@ -82,10 +60,6 @@ retinex<-SSR1
   #color restore
   {
     img_sum<-(im[,,,1]+im[,,,2]+im[,,,3])
-    
-    #img_sum[which(img_sum==0)]<-0.00000000000000001
-    #im[which(im==0)]<-0.00000000000000001
-    
     channel_1<-log10(im[,,,1]*alpha)-log10(img_sum)
     channel_2<-log10(im[,,,2]*alpha)-log10(img_sum)
     channel_3<-log10(im[,,,3]*alpha)-log10(img_sum)
