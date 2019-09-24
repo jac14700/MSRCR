@@ -1,5 +1,6 @@
 library(imager)
-setwd("E:/School stuffs/¦Û¶Ç¼i¾ú/MSRCR")
+setwd("E:\\School stuffs\\Github\\MSRCR")
+#load imgs which undergo Gussain filter
 im<-as.cimg(load.image("W_1.JPG"))
 im_Gaussian1 <- as.cimg(load.image("4out_put.png"))
 im_Gaussian2 <- as.cimg(load.image("10out_put.png"))
@@ -42,6 +43,7 @@ modify_value<-0.0000000001
     SSR6<-log_im -log_im_Gaussian6
   }  
 }
+
 retinex<-(SSR1+SSR2+SSR3+SSR4+SSR5+SSR6)/6
 {
     temp<-retinex
@@ -50,6 +52,8 @@ retinex<-(SSR1+SSR2+SSR3+SSR4+SSR5+SSR6)/6
     temp[,,,3]<-(retinex[,,,3]-min(retinex[,,,3])) / (max(retinex[,,,3])-min(retinex[,,,3]))
     plot(temp)
 }
+
+
 {
   beta<-46
   alpha<-125
